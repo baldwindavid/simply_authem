@@ -12,41 +12,42 @@ Simply Authem Authentication Engine
 - I need to be able to authenticate on the email or username or login or email and username or any other field.
 - I don't want anything other than a tiny yaml configuration file within my application code.
 - I need to prototype something very quickly.
+- I need a plugin/engine that makes me laugh when I say it out loud.
 
 If so, give Simply Authem a try.  
 
 ## INSTALLATION
 
-### Install the [`active_hash`](http://github.com/zilkey/active_hash) gem and add to environment.rb
+### 1. Install the [`active_hash`](http://github.com/zilkey/active_hash) gem and add to environment.rb
     
     sudo gem install zilkey-active_hash
     
     # in config/environment.rb
     config.gem "zilkey-active_hash", :lib => "active_hash", :source => 'http://gems.github.com'
     
-### Install the Simply Authem engine
+### 2. Install the Simply Authem engine
 
     script/plugin install git://github.com/baldwindavid/simply_authem.git
     
-### Include SimplyAuthemSystem in ApplicationController
+### 3. Include SimplyAuthemSystem in ApplicationController
     
     class ApplicationController < ActionController::Base
       include SimplyAuthemSystem
 
-### Inherit your user model from SimplyAuthemUser
+### 4. Inherit your user model from SimplyAuthemUser
     
 **Note:** This model does not have to be named User.  This could be Account, Person, etc.
 
     class User < SimplyAuthemUser
     
-### Add `login_required` as a `before_filter` to any controllers
+### 5. Add `login_required` as a `before_filter` to any controllers
 
     class EventsController < ApplicationController
-      before_filter :authenticate, :except => [:index]
+      before_filter :login_required, :except => [:index]
       
 You also have the `authorized?` method which can be overridden per controller.
       
-### Run the `simply_authem` generator
+### 6. Run the `simply_authem` generator
 
     script/generate simply_authem
     
