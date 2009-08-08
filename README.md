@@ -52,7 +52,7 @@ You also have the `authorized?` method which can be overridden per controller.
     script/generate simply_authem
     
 The generator simply creates a yaml file (`config/simply_authem.yml`) that will setup your user model and authentication.
-Here are the contents of the sample file (it can be much simpler or complex) if you would rather create it yourself...
+Here are the contents of the sample file (it can be much more simple or complex) if you would rather create it yourself...
 
     authentication_fields: 
       - email
