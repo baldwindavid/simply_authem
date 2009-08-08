@@ -52,7 +52,7 @@ You also have the `authorized?` method which can be overridden per controller.
     script/generate simply_authem
     
 The generator simply creates a yaml file (`config/simply_authem.yml`) that will setup your user model and authentication.
-Here are the contents of the sample file if you would rather create it yourself...
+Here are the contents of the sample file (it can be much simpler or complex) if you would rather create it yourself...
 
     authentication_fields: 
       - email
@@ -76,7 +76,7 @@ Here are the contents of the sample file if you would rather create it yourself.
         active: false
 
         
-Your file may be is simple as this for a single user authenticated by email...
+Your file may be as simple as this for a single user authenticated by email...
 
     authentication_fields: 
       - email
@@ -97,7 +97,7 @@ Add any additional fields and users that you need.  The only fields that are nec
 
 ### ActiveRecord-ish
 
-The users will work mostly like a real ActiveRecord model.  This functionality is provided by the [`active_hash`](http://github.com/zilkey/active_hash) gem noted in the installation instructions.
+The users in the yaml file will work mostly like a real ActiveRecord model even though there is no database table.  This functionality is provided by the [`active_hash`](http://github.com/zilkey/active_hash) gem noted in the installation instructions.
 
 ActiveHash objects implement enough of the ActiveRecord api to satisfy most common needs. For example:
 
@@ -116,10 +116,20 @@ ActiveHash objects implement enough of the ActiveRecord api to satisfy most comm
     User.find_by_age 30      # => returns the first object matching that name
     User.find_all_by_age 30  # => returns an array of the objects with matching names
     
-**Associations** - You can even use `belongs_to` and `has_many` associations - I added the `has_many` functionality and it is limited the simplest cases, but supports the `:class_name` and `:foreign_key` options.
+**Associations** - You can even use `belongs_to` and `has_many` associations. I added the `has_many` functionality and it is limited the simplest cases, but supports the `:class_name` and `:foreign_key` options.
     
     class User < SimplyAuthemUser
       has_many :events
+      
+**Accessor and Boolean Methods** - Just like in ActiveRecord, fields added in the yaml file will automatically get an accessor method and boolean version of said method.  
+
+So if you were to define :age in the yaml file you would get...
+
+    current_user.age
+    
+And if you defined :verified you could use the handy boolean method...
+
+    current_user.verified?
 
 ## Helper Methods
 
