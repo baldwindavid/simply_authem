@@ -1,0 +1,1 @@
+require 'active_hash_has_many'

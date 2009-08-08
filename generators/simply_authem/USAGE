@@ -1,0 +1,8 @@
+Description:
+    Generate a sample authentication configuration file
+
+Example:
+    ./script/generate simply_authem
+
+    This will create:
+        config/simply_authem.yml

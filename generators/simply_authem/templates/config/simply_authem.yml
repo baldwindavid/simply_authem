@@ -1,0 +1,21 @@
+authentication_fields: 
+  - email
+  - username
+
+users:
+  -
+    id: 1
+    email: someone@somewhere.com
+    username: someone
+    password: whatever
+    firstname: John
+    lastname: Doe
+    active: true
+  -
+    id: 2
+    email: someone_else@somewhere.com
+    username: someone_else
+    password: whatever
+    firstname: Jack
+    lastname: Handey
+    active: false
