@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
   def create
     session[:authentication_field] = params[:authentication_field]
     session[:password] = params[:password]
-    flash[:notice] = "You have been authenticated"
     redirect_back_or_default('/')
   end
   
