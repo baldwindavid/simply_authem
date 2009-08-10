@@ -1,1 +1,1 @@
-require 'active_hash_has_many'
+require 'active_hash_extensions'
