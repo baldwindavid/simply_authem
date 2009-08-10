@@ -2,8 +2,18 @@ module SimplyAuthemSystem
   
   protected
   
-  def login_required
+  # Authentication before_filter method name
+  # default is login_required
+  # can be changed in config/simply_authem.yml
+  define_method SimplyAuthem.config['authentication_before_filter_method_name'] do
     authorized? || access_denied
+  end
+  
+  # Current user method
+  # default is current_user
+  # can be changed in config/simply_authem.yml
+  define_method SimplyAuthem.config['current_user_method_name'] do
+    SimplyAuthemUser.authenticate(session[:authentication_field], session[:password])
   end
   
   def access_denied
@@ -25,15 +35,11 @@ module SimplyAuthemSystem
   end
   
   def logged_in?
-    !!current_user
+    !!send(SimplyAuthem.config['current_user_method_name'])
   end
   
   def authorized?
     logged_in?
-  end
-
-  def current_user
-    SimplyAuthemUser.authenticate(session[:authentication_field], session[:password])
   end
   
 end

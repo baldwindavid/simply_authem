@@ -1,6 +1,9 @@
 authentication_fields: 
   - email
   - username
+  
+authentication_before_filter_method_name: login_required
+current_user_method_name: current_user
 
 users:
   -
@@ -19,3 +22,4 @@ users:
     firstname: Jack
     lastname: Handey
     active: false
+  

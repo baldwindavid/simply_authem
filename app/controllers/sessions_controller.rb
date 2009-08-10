@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   
-  skip_before_filter :login_required
+  skip_before_filter SimplyAuthem.config['authentication_before_filter_method_name']
   
   def new
   end

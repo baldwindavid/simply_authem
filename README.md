@@ -7,7 +7,7 @@ Simply Authem Authentication Engine
 - I don't want to mess with setting up a users table or even touching my database. In fact, I don't want to make many authentication decisions at this point.  But I do need my User model to act like an ActiveRecord model.
 - I need to be able to easily add fields to my User/Account model.
 - I don't want to mess with setting up a Sessions controller and associated routing (`login_path`, `logout_path`, etc.)
-- I need conventional method names available (`current_user`, `logged_in?`, `authorized?`) to be able to upgrade to a more robust system (Authlogic, Clearance, Restful Authentication) with little to no change to my application.
+- I need to be able to easily customize the method names for my authentication `before_filter` and `current_user` to be able to upgrade to a more robust system (Authlogic, Clearance, Restful Authentication) with little to no change to my application.
 - I have less than 10 users to authenticate.
 - I need to be able to authenticate on the email or username or login or email and username or any other field.
 - I don't want anything other than a tiny yaml configuration file within my application code.
@@ -40,12 +40,12 @@ If so, give Simply Authem a try.
 
     class User < SimplyAuthemUser
     
-### 5. Add `login_required` as a `before_filter` to any controllers
+### 5. Add `login_required` (or custom name) as a `before_filter` to any controllers
 
     class EventsController < ApplicationController
       before_filter :login_required, :except => [:index]
       
-You also have the `authorized?` method which can be overridden per controller.
+**Note:** This method name is easily configurable within the yaml configuration file.  You also have the `authorized?` method which can be overridden per controller.
       
 ### 6. Run the `simply_authem` generator
 
@@ -57,6 +57,8 @@ Here are the contents of the sample file (it can be much more simple or complex)
     authentication_fields: 
       - email
       - username
+    authentication_before_filter_method_name: login_required
+    current_user_method_name: current_user
     users:
       -
         id: 1
@@ -74,7 +76,6 @@ Here are the contents of the sample file (it can be much more simple or complex)
         firstname: Jack
         lastname: Handey
         active: false
-
         
 Your file may be as simple as this for a single user authenticated by email...
 
@@ -87,9 +88,17 @@ Your file may be as simple as this for a single user authenticated by email...
         password: somepassword
         
 
-## Authentication Fields
+## Authentication Fields - `authentication_fields`
 
 The authentication fields are just the field names that should be authenticated.  You can list either one or two fields and the field names can be whatever you want (email, username, login, etc.).
+
+## Current User Method Name - `current_user_method_name`
+
+You can use a custom method name for your current user object.  The method name in the sample file is `current_user`, but you could use any name (e.g. `current`)
+
+## Authentication Before Filter Method Name - `authentication_before_filter_method_name`
+
+You have the ability to use a custom method name for your authentication before filter.  The method name in the sample file is `login_required`, but you could use any name (`require_login`, `authenticate`, etc.)
 
 ## Users
 
