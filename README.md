@@ -59,6 +59,7 @@ Here are the contents of the sample file (it can be much more simple or complex)
       - username
     authentication_before_filter_method_name: login_required
     current_user_method_name: current_user
+    sessions_controller_layout_name: application
     users:
       -
         id: 1
@@ -99,6 +100,10 @@ You can use a custom method name for your current user object.  The method name 
 ## Authentication Before Filter Method Name - `authentication_before_filter_method_name`
 
 You have the ability to use a custom method name for your authentication before filter.  The method name in the sample file is `login_required`, but you could use any name (`require_login`, `authenticate`, etc.)
+
+## Sessions Controller Layout Name - `sessions_controller_layout_name`
+
+The engine includes a sessions controller.  This setting will set the layout for that controller.  The default layout set in the sample file is "application".
 
 ## Users
 

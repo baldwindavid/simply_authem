@@ -4,6 +4,7 @@ authentication_fields:
   
 authentication_before_filter_method_name: login_required
 current_user_method_name: current_user
+sessions_controller_layout_name: application
 
 users:
   -

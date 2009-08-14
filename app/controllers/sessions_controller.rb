@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   
+  layout SimplyAuthem.config['sessions_controller_layout_name']
   skip_before_filter SimplyAuthem.config['authentication_before_filter_method_name'].intern
   
   def new
