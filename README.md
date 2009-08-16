@@ -60,6 +60,7 @@ Here are the contents of the sample file (it can be much more simple or complex)
     authentication_before_filter_method_name: login_required
     current_user_method_name: current_user
     sessions_controller_layout_name: application
+    authentication_field_label_name: Email or Username
     users:
       -
         id: 1
@@ -104,6 +105,10 @@ You have the ability to use a custom method name for your authentication before 
 ## Sessions Controller Layout Name - `sessions_controller_layout_name`
 
 The engine includes a sessions controller.  This setting will set the layout for that controller.  The default layout set in the sample file is "application".
+
+## Authentication Field Label Name - `authentication_field_label_name`
+
+This is the label that will be displayed beside the authentication field (email, username, login, etc.) on the login form.  The default value set in the sample file is "Email or Username".
 
 ## Users
 
