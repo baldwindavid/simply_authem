@@ -83,6 +83,10 @@ Your file may be as simple as this for a single user authenticated by email...
 
     authentication_fields: 
       - email
+    authentication_before_filter_method_name: login_required
+    current_user_method_name: current_user
+    sessions_controller_layout_name: application
+    authentication_field_label_name: Email or Username
     users:
       -
         id: 1
@@ -149,11 +153,6 @@ So if you were to define :age in the yaml file you would get...
 And if you defined :verified you could use the handy boolean method...
 
     current_user.verified?
-
-## Helper Methods
-
-- `logged_in?`
-- `current_user`
 
 
 ### Credits
